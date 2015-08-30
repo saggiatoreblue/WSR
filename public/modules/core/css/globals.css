@@ -1,0 +1,43 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+/**
+    Breakpoint Variables
+
+    [Description]
+        Defines various breakpoints for use in media queries. Not all browsers support rem units in media queries, so we will use px for now.
+**/
+/**
+    REM Mixins
+
+    [Description]
+        Shortcut for outputting rem units with pixel units as a fallback.
+
+    [Example]
+        .rem(font-size, 16);
+
+        // Output:
+        font-size: 16px;
+        font-size: 1rem;
+**/
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+}
+/* start commented backslash hack \*/
+* html .clearfix {
+  height: 1%;
+}
+.clearfix {
+  display: block;
+}
+/* close commented backslash hack */

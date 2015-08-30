@@ -1,0 +1,456 @@
+// Box Sizing
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+
+/**
+    Breakpoint Variables
+
+    [Description]
+        Defines various breakpoints for use in media queries. Not all browsers support rem units in media queries, so we will use px for now.
+**/
+@mobile-portrait-breakpoint: 320px; // 20rem
+@mobile-landscape-breakpoint: 480px; // 30rem
+@tablet-breakpoint: 768px; // 48rem
+@small-desktop-breakpoint: 1024px; // 64rem
+@medium-desktop-breakpoint: 1280px; // 80rem
+@large-desktop-breakpoint: 1366px; // 85.375rem
+@zoom-breakpoint: 2000px; // 125rem
+
+
+
+/**
+    REM Mixins
+
+    [Description]
+        Shortcut for outputting rem units with pixel units as a fallback.
+
+    [Example]
+        .rem(font-size, 16);
+
+        // Output:
+        font-size: 16px;
+        font-size: 1rem;
+**/
+
+
+.rem(font-size, @size: @default-font-size) {
+  @sizeREM: (@size / 16);
+  font-size: ~"@{size}px";
+  font-size: ~"@{sizeREM}rem";
+}
+
+
+// REM Line Height
+.rem(line-height, @height: @line-height) {
+  @heightREM: (@height / 16);
+  line-height: ~"@{height}px";
+  line-height: ~"@{heightREM}rem";
+}
+
+
+// REM Width
+.rem(width, @width) {
+  @widthREM: (@width / 16);
+  width: ~"@{width}px";
+  width: ~"@{widthREM}rem";
+}
+
+.rem(min-width, @width) {
+  @widthREM: (@width / 16);
+  min-width: ~"@{width}px";
+  min-width: ~"@{widthREM}rem";
+}
+
+.rem(max-width, @width) {
+  @widthREM: (@width / 16);
+  max-width: ~"@{width}px";
+  max-width: ~"@{widthREM}rem";
+}
+
+
+// REM Height
+.rem(height, @height) {
+  @heightREM: (@height / 16);
+  height: ~"@{height}px";
+  height: ~"@{heightREM}rem";
+}
+
+.rem(min-height, @height) {
+  @heightREM: (@height / 16);
+  min-height: ~"@{height}px";
+  min-height: ~"@{heightREM}rem";
+}
+
+.rem(max-height, @height) {
+  @heightREM: (@height / 16);
+  max-height: ~"@{height}px";
+  max-height: ~"@{heightREM}rem";
+}
+
+
+// REM Margin
+.rem(margin, @margin: @gutter) {
+  @marginREM: (@margin / 16);
+  margin: ~"@{margin}px";
+  margin: ~"@{marginREM}rem";
+}
+
+.rem(margin, @topBottom, @rightLeft) when (isnumber(@rightLeft))  {
+  @topBottomREM: (@topBottom / 16);
+  @rightLeftREM: (@rightLeft / 16);
+  margin: ~"@{topBottom}px" ~"@{rightLeft}px";
+  margin: ~"@{topBottomREM}rem" ~"@{rightLeftREM}rem";
+}
+
+.rem(margin, @topBottom, @rightLeft) when not (isnumber(@rightLeft)) {
+  @topBottomREM: (@topBottom / 16);
+  margin: ~"@{topBottom}px" auto;
+  margin: ~"@{topBottomREM}rem" auto;
+}
+
+.rem(margin, @top, @rightLeft, @bottom) when (isnumber(@rightLeft))  {
+  @topREM: (@top / 16);
+  @rightLeftREM: (@rightLeft / 16);
+  @bottomREM: (@bottom / 16);
+  margin: ~"@{top}px" ~"@{rightLeft}px" ~"@{bottom}px";
+  margin: ~"@{topREM}rem" ~"@{rightLeftREM}rem" ~"@{bottomREM}rem";
+}
+
+.rem(margin, @top, @rightLeft, @bottom) when not (isnumber(@rightLeft)) {
+  @topREM: (@top / 16);
+  @bottomREM: (@bottom / 16);
+  margin: ~"@{top}px" auto ~"@{bottom}px";
+  margin: ~"@{topREM}rem" auto ~"@{bottomREM}rem";
+}
+
+.rem(margin, @top, @right, @bottom, @left) when (isnumber(@left)) and (isnumber(@right)) {
+  @topREM: (@top / 16);
+  @rightREM: (@right / 16);
+  @bottomREM: (@bottom / 16);
+  @leftREM: (@left / 16);
+  margin: ~"@{top}px" ~"@{right}px" ~"@{bottom}px" ~"@{left}px";
+  margin: ~"@{topREM}rem" ~"@{rightREM}rem" ~"@{bottomREM}rem" ~"@{leftREM}rem";
+}
+
+.rem(margin, @top, @right, @bottom, @left) when not (isnumber(@left)) and not (isnumber(@right)) {
+  @topREM: (@top / 16);
+  @bottomREM: (@bottom / 16);
+  margin: ~"@{top}px" auto ~"@{bottom}px" auto;
+  margin: ~"@{topREM}rem" auto ~"@{bottomREM}rem" auto;
+}
+
+.rem(margin-top, @margin: @gutter) {
+  @marginREM: (@margin / 16);
+  margin-top: ~"@{margin}px";
+  margin-top: ~"@{marginREM}rem";
+}
+
+.rem(margin-right, @margin: @gutter) {
+  @marginREM: (@margin / 16);
+  margin-right: ~"@{margin}px";
+  margin-right: ~"@{marginREM}rem";
+}
+
+.rem(margin-bottom, @margin: @gutter) {
+  @marginREM: (@margin / 16);
+  margin-bottom: ~"@{margin}px";
+  margin-bottom: ~"@{marginREM}rem";
+}
+
+.rem(margin-left, @margin: @gutter) {
+  @marginREM: (@margin / 16);
+  margin-left: ~"@{margin}px";
+  margin-left: ~"@{marginREM}rem";
+}
+
+// REM Padding
+.rem(padding, @pad: @padding) {
+  @padREM: (@pad / 16);
+  padding: ~"@{pad}px";
+  padding: ~"@{padREM}rem";
+}
+
+.rem(padding, @topBottom, @rightLeft) {
+  @topBottomREM: (@topBottom / 16);
+  @rightLeftREM: (@rightLeft / 16);
+  padding: ~"@{topBottom}px" ~"@{rightLeft}px";
+  padding: ~"@{topBottomREM}rem" ~"@{rightLeftREM}rem";
+}
+
+.rem(padding, @top, @rightLeft, @bottom) {
+  @topREM: (@top / 16);
+  @rightLeftREM: (@rightLeft / 16);
+  @bottomREM: (@bottom / 16);
+  padding: ~"@{top}px" ~"@{rightLeft}px" ~"@{bottom}px";
+  padding: ~"@{topREM}rem" ~"@{rightLeftREM}rem" ~"@{bottomREM}rem";
+}
+
+.rem(padding, @top, @right, @bottom, @left) {
+  @topREM: (@top / 16);
+  @rightREM: (@right / 16);
+  @bottomREM: (@bottom / 16);
+  @leftREM: (@left / 16);
+  padding: ~"@{top}px" ~"@{right}px" ~"@{bottom}px" ~"@{left}px";
+  padding: ~"@{topREM}rem" ~"@{rightREM}rem" ~"@{bottomREM}rem" ~"@{leftREM}rem";
+}
+
+.rem(padding-top, @pad: @padding) {
+  @padREM: (@pad / 16);
+  padding-top: ~"@{pad}px";
+  padding-top: ~"@{padREM}rem";
+}
+
+.rem(padding-right, @pad: @padding) {
+  @padREM: (@pad / 16);
+  padding-right: ~"@{pad}px";
+  padding-right: ~"@{padREM}rem";
+}
+
+.rem(padding-bottom, @pad: @padding) {
+  @padREM: (@pad / 16);
+  padding-bottom: ~"@{pad}px";
+  padding-bottom: ~"@{padREM}rem";
+}
+
+.rem(padding-left, @pad: @padding) {
+  @padREM: (@pad / 16);
+  padding-left: ~"@{pad}px";
+  padding-left: ~"@{padREM}rem";
+}
+
+// REM Positioning
+.rem(top, @offset) {
+  @offsetREM: (@offset / 16);
+  top: ~"@{offset}px";
+  top: ~"@{offsetREM}rem";
+}
+
+.rem(right, @offset) {
+  @offsetREM: (@offset / 16);
+  right: ~"@{offset}px";
+  right: ~"@{offsetREM}rem";
+}
+
+.rem(bottom, @offset) {
+  @offsetREM: (@offset / 16);
+  bottom: ~"@{offset}px";
+  bottom: ~"@{offsetREM}rem";
+}
+
+.rem(left, @offset) {
+  @offsetREM: (@offset / 16);
+  left: ~"@{offset}px";
+  left: ~"@{offsetREM}rem";
+}
+
+// REM Border
+.rem(border, @width: @border-width, @style: @border-style, @color: @border-color) {
+  @widthREM: (@width / 16);
+  border: ~"@{width}px" @style @color;
+  border: ~"@{widthREM}rem" @style @color;
+}
+
+.rem(border-top, @width: @border-width, @style: @border-style, @color: @border-color) {
+  @widthREM: (@width / 16);
+  border-top: ~"@{width}px" @style @color;
+  border-top: ~"@{widthREM}rem" @style @color;
+}
+
+.rem(border-right, @width: @border-width, @style: @border-style, @color: @border-color) {
+  @widthREM: (@width / 16);
+  border-right: ~"@{width}px" @style @color;
+  border-right: ~"@{widthREM}rem" @style @color;
+}
+
+.rem(border-bottom, @width: @border-width, @style: @border-style, @color: @border-color) {
+  @widthREM: (@width / 16);
+  border-bottom: ~"@{width}px" @style @color;
+  border-bottom: ~"@{widthREM}rem" @style @color;
+}
+
+.rem(border-left, @width: @border-width, @style: @border-style, @color: @border-color) {
+  @widthREM: (@width / 16);
+  border-left: ~"@{width}px" @style @color;
+  border-left: ~"@{widthREM}rem" @style @color;
+}
+
+.rem(border-width, @width: @border-width) {
+  @widthREM: (@width / 16);
+  border-width: ~"@{width}px";
+  border-width: ~"@{widthREM}rem";
+}
+
+// REM Box Shadow
+.rem(box-shadow, @h, @v) when (isnumber(@h)) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  box-shadow: ~"@{h}px" ~"@{v}px";
+  box-shadow: ~"@{hREM}rem" ~"@{vREM}rem";
+}
+
+.rem(box-shadow, @h, @v, @color) when (iscolor(@color)) and (isnumber(@h)) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  box-shadow: ~"@{h}px" ~"@{v}px" @color;
+  box-shadow: ~"@{hREM}rem" ~"@{vREM}rem" @color;
+}
+
+.rem(box-shadow, @h, @v, @blur) when (isnumber(@blur)) and (isnumber(@h)) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  @blurREM: (@blur / 16);
+  box-shadow: ~"@{h}px" ~"@{v}px" ~"@{blur}px";
+  box-shadow: ~"@{hREM}rem" ~"@{vREM}rem" ~"@{blurREM}rem";
+}
+
+.rem(box-shadow, @h, @v, @blur, @color) when (iscolor(@color)) and (isnumber(@h)) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  @blurREM: (@blur / 16);
+  box-shadow: ~"@{h}px" ~"@{v}px" ~"@{blur}px" @color;
+  box-shadow: ~"@{hREM}rem" ~"@{vREM}rem" ~"@{blurREM}rem" @color;
+}
+
+.rem(box-shadow, @h, @v, @blur, @spread) when (isnumber(@spread)) and (isnumber(@h)) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  @blurREM: (@blur / 16);
+  @spreadREM: (@spread / 16);
+  box-shadow: ~"@{h}px" ~"@{v}px" ~"@{blur}px" ~"@{spread}px";
+  box-shadow: ~"@{hREM}rem" ~"@{vREM}rem" ~"@{blurREM}rem" ~"@{spreadREM}rem";
+}
+
+.rem(box-shadow, @h, @v, @blur, @spread, @color) when (isnumber(@h)) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  @blurREM: (@blur / 16);
+  @spreadREM: (@spread / 16);
+  box-shadow: ~"@{h}px" ~"@{v}px" ~"@{blur}px" ~"@{spread}px" @color;
+  box-shadow: ~"@{hREM}rem" ~"@{vREM}rem" ~"@{blurREM}rem" ~"@{spreadREM}rem" @color;
+}
+
+.rem(box-shadow, inset, @h, @v) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  box-shadow: inset ~"@{h}px" ~"@{v}px";
+  box-shadow: inset ~"@{hREM}rem" ~"@{vREM}rem";
+}
+
+.rem(box-shadow, inset, @h, @v, @color) when (iscolor(@color)) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  box-shadow: inset ~"@{h}px" ~"@{v}px" @color;
+  box-shadow: inset ~"@{hREM}rem" ~"@{vREM}rem" @color;
+}
+
+.rem(box-shadow, inset, @h, @v, @blur) when (isnumber(@blur)) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  @blurREM: (@blur / 16);
+  box-shadow: inset ~"@{h}px" ~"@{v}px" ~"@{blur}px";
+  box-shadow: inset ~"@{hREM}rem" ~"@{vREM}rem" ~"@{blurREM}rem";
+}
+
+.rem(box-shadow, inset, @h, @v, @blur, @color) when (iscolor(@color)) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  @blurREM: (@blur / 16);
+  box-shadow: inset ~"@{h}px" ~"@{v}px" ~"@{blur}px" @color;
+  box-shadow: inset ~"@{hREM}rem" ~"@{vREM}rem" ~"@{blurREM}rem" @color;
+}
+
+.rem(box-shadow, inset, @h, @v, @blur, @spread) when (isnumber(@spread)) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  @blurREM: (@blur / 16);
+  @spreadREM: (@spread / 16);
+  box-shadow: inset ~"@{h}px" ~"@{v}px" ~"@{blur}px" ~"@{spread}px";
+  box-shadow: inset ~"@{hREM}rem" ~"@{vREM}rem" ~"@{blurREM}rem" ~"@{spreadREM}rem";
+}
+
+.rem(box-shadow, inset, @h, @v, @blur, @spread, @color) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  @blurREM: (@blur / 16);
+  @spreadREM: (@spread / 16);
+  box-shadow: inset ~"@{h}px" ~"@{v}px" ~"@{blur}px" ~"@{spread}px" @color;
+  box-shadow: inset ~"@{hREM}rem" ~"@{vREM}rem" ~"@{blurREM}rem" ~"@{spreadREM}rem" @color;
+}
+
+// REM Text Shadow
+.rem(text-shadow, @h, @v) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  text-shadow: ~"@{h}px" ~"@{v}px";
+  text-shadow: ~"@{hREM}rem" ~"@{vREM}rem";
+}
+
+.rem(text-shadow, @h, @v, @color) when (iscolor(@color)) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  text-shadow: ~"@{h}px" ~"@{v}px" @color;
+  text-shadow: ~"@{hREM}rem" ~"@{vREM}rem" @color;
+}
+
+.rem(text-shadow, @h, @v, @blur) when (isnumber(@blur)) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  @blurREM: (@blur / 16);
+  text-shadow: ~"@{h}px" ~"@{v}px" ~"@{blur}px";
+  text-shadow: ~"@{hREM}rem" ~"@{vREM}rem" ~"@{blurREM}rem";
+}
+
+.rem(text-shadow, @h, @v, @blur, @color) {
+  @hREM: (@h / 16);
+  @vREM: (@v / 16);
+  @blurREM: (@blur / 16);
+  text-shadow: ~"@{h}px" ~"@{v}px" ~"@{blur}px" @color;
+  text-shadow: ~"@{hREM}rem" ~"@{vREM}rem" ~"@{blurREM}rem" @color;
+}
+
+// REM Border Radius
+.rem(border-radius, @radius: @border-radius) {
+  @radiusREM: (@radius / 16);
+  border-radius: ~"@{radius}px";
+  border-radius: ~"@{radiusREM}rem";
+}
+
+.rem(border-radius, @topLeftBottomRight, @topRightBottomLeft) {
+  @topLeftBottomRightREM: (@topLeftBottomRight / 16);
+  @topRightBottomLeftREM: (@topRightBottomLeft / 16);
+  border-radius: ~"@{topLeftBottomRight}px" ~"@{topRightBottomLeft}px";
+  border-radius: ~"@{topLeftBottomRightREM}rem" ~"@{topRightBottomLeftREM}rem";
+}
+
+.rem(border-radius, @topLeft, @topRightBottomLeft, @bottomRight) {
+  @topLeftREM: (@topLeft / 16);
+  @topRightBottomLeftREM: (@topRightBottomLeft / 16);
+  @bottomRightREM: (@bottomRight / 16);
+  border-radius: ~"@{topLeft}px" ~"@{topRightBottomLeft}px" ~"@{bottomRight}px";
+  border-radius: ~"@{topLeftREM}rem" ~"@{topRightBottomLeftREM}rem" ~"@{bottomRightREM}rem";
+}
+
+.rem(border-radius, @topLeft, @topRight, @bottomRight, @bottomLeft) {
+  @topLeftREM: (@topLeft / 16);
+  @topRightREM: (@topRight / 16);
+  @bottomRightREM: (@bottomRight / 16);
+  @bottomLeftREM: (@bottomLeft / 16);
+  border-radius: ~"@{topLeft}px" ~"@{topRight}px" ~"@{bottomRight}px" ~"@{bottomLeft}px";
+  border-radius: ~"@{topLeftREM}rem" ~"@{topRightREM}rem" ~"@{bottomRightREM}rem" ~"@{bottomLeftREM}rem";
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */

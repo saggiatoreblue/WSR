@@ -1,0 +1,114 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+/**
+    Breakpoint Variables
+
+    [Description]
+        Defines various breakpoints for use in media queries. Not all browsers support rem units in media queries, so we will use px for now.
+**/
+/**
+    REM Mixins
+
+    [Description]
+        Shortcut for outputting rem units with pixel units as a fallback.
+
+    [Example]
+        .rem(font-size, 16);
+
+        // Output:
+        font-size: 16px;
+        font-size: 1rem;
+**/
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+}
+/* start commented backslash hack \*/
+* html .clearfix {
+  height: 1%;
+}
+.clearfix {
+  display: block;
+}
+/* close commented backslash hack */
+.accordion-toggle {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.accordion-toggle:hover {
+  text-decoration: none;
+}
+.election {
+  position: relative;
+}
+.election .glyphicon {
+  right: 10px;
+  right: 0.625rem;
+  top: 30px;
+  top: 1.875rem;
+  position: absolute;
+}
+.election--office {
+  font-size: 22px;
+  font-size: 1.375rem;
+  margin: 0px 0px 5px 0px;
+  margin: 0rem 0rem 0.3125rem 0rem;
+  text-transform: uppercase;
+}
+.election--district {
+  font-size: 18px;
+  font-size: 1.125rem;
+  font-style: italic;
+  font-weight: bold;
+}
+.election--data {
+  font-weight: normal;
+}
+.election--data a:not([href]) {
+  color: black;
+}
+.election--data a:not([href]):hover {
+  text-decoration: none;
+}
+.candidate--detail {
+  display: block;
+  font-weight: bold;
+}
+.vote-label {
+  width: 100%;
+  text-align: right;
+  display: block;
+  padding-right: 20px;
+  padding-right: 1.25rem;
+}
+.candidate--data {
+  font-weight: normal;
+}
+.candidate--select {
+  display: block;
+  width: 30px;
+  width: 1.875rem;
+  height: 30px;
+  height: 1.875rem;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  right: 30px;
+  right: 1.875rem;
+  top: 50%;
+  margin-top: -15px;
+  margin-top: -0.9375rem;
+  position: absolute;
+}

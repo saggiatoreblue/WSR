@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 intro" ng-controller="IntroController">
+            <div data-ng-hide="authentication.user" class="panel panel-default panel__intro">
+                <div class="panel-body panel-body__intro">
+                    <ul class="nav nav__intro" >
+                        <li ui-route="/signup" ng-class="{active: $uiRoute}">
+                            <a href="/#!/signup">Sign Up</a>
+                        </li>
+                        <li ui-route="/signin" ng-class="{active: $uiRoute}">
+                            <a href="/#!/signin">Sign In</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

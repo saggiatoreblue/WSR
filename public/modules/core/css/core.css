@@ -1,0 +1,93 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+/**
+    Breakpoint Variables
+
+    [Description]
+        Defines various breakpoints for use in media queries. Not all browsers support rem units in media queries, so we will use px for now.
+**/
+/**
+    REM Mixins
+
+    [Description]
+        Shortcut for outputting rem units with pixel units as a fallback.
+
+    [Example]
+        .rem(font-size, 16);
+
+        // Output:
+        font-size: 16px;
+        font-size: 1rem;
+**/
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+}
+/* start commented backslash hack \*/
+* html .clearfix {
+  height: 1%;
+}
+.clearfix {
+  display: block;
+}
+/* close commented backslash hack */
+.content {
+  margin-top: 50px;
+}
+.undecorated-link:hover {
+  text-decoration: none;
+}
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
+.ng-invalid.ng-dirty {
+  border-color: #FA787E;
+}
+.ng-valid.ng-dirty {
+  border-color: #78FA89;
+}
+.intro {
+  margin: 150px auto 0px auto;
+  margin: 9.375rem auto 0rem auto;
+  float: none;
+}
+.panel__intro {
+  padding: 0;
+}
+.panel-body__intro {
+  padding: 0;
+}
+.nav__intro li {
+  display: block;
+  width: 50%;
+  margin: 0;
+  float: left;
+  text-align: center;
+}
+.nav__intro li a {
+  padding: 20px;
+  padding: 1.25rem;
+  text-transform: uppercase;
+}
+.location-heading {
+  padding: 0;
+  display: block;
+}
+.form-group {
+  box-sizing: content-box;
+}
