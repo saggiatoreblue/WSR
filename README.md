@@ -25,4 +25,4 @@ $ sudo npm install -g grunt-cli
 ```
 
 ## Downloading MEAN.JS
-This was built on top of MEAN.JS. I recommend using the yo generator with this project. [Official Yo Generator](http://meanjs.org/generator.html)
+I recommend using the MEANJS yo generator with this project. [Official Yo Generator](http://meanjs.org/generator.html)
