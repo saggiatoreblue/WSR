@@ -410,6 +410,8 @@
   text-shadow: ~"@{hREM}rem" ~"@{vREM}rem" ~"@{blurREM}rem" @color;
 }
 
+
+
 // REM Border Radius
 .rem(border-radius, @radius: @border-radius) {
   @radiusREM: (@radius / 16);
@@ -454,3 +456,8 @@
 * html .clearfix { height: 1%; }
 .clearfix { display: block; }
 /* close commented backslash hack */
+
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}

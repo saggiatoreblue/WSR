@@ -29,8 +29,8 @@ describe('Election Model Unit Tests:', function() {
 
 		user.save(function() { 
 			election = new Election({
-				// Add model fields
-				// ...
+				name: 'Election Name',
+				user: user
 			});
 
 			done();
@@ -41,6 +41,15 @@ describe('Election Model Unit Tests:', function() {
 		it('should be able to save without problems', function(done) {
 			return election.save(function(err) {
 				should.not.exist(err);
+				done();
+			});
+		});
+
+		it('should be able to show an error when try to save without name', function(done) { 
+			election.name = '';
+
+			return election.save(function(err) {
+				should.exist(err);
 				done();
 			});
 		});

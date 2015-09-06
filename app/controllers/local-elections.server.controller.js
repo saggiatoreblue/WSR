@@ -8,45 +8,32 @@ var mongoose = require('mongoose'),
 	LocalElection = mongoose.model('LocalElection'),
 	_ = require('lodash');
 
-
+/**
+ * Show election by id
+ */
+exports.read = function(req, res) {
+    res.json(req.localElection);
+};
 
 /**
- * Update a Local election
-
+ * Update an election
+ */
 exports.update = function(req, res) {
-	var localElection = req.localElection ;
+    var localElection = req.localElection;
 
-	localElection = _.extend(localElection , req.body);
+    localElection = _.extend(localElection, req.body);
 
-	localElection.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(localElection);
-		}
-	});
+    localElection.save(function(err) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(localElection);
+        }
+    });
 };
- */
 
-/**
- * Delete an Local election
-
-exports.delete = function(req, res) {
-	var localElection = req.localElection ;
-
-	localElection.remove(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(localElection);
-		}
-	});
-};
- */
 
 /**
  * List of Local elections
@@ -67,8 +54,8 @@ exports.list = function(req, res) {
 /**
  * Local election middleware
  */
-exports.localElectionByID = function(req, res, next, id) { 
-	LocalElection.findById(id).populate('user', 'displayName').exec(function(err, localElection) {
+exports.localElectionById = function(req, res, next, id) {
+	LocalElection.findById(id).exec(function(err, localElection) {
 		if (err) return next(err);
 		if (! localElection) return next(new Error('Failed to load Local election ' + id));
 		req.localElection = localElection ;

@@ -8,13 +8,10 @@ module.exports = function(app) {
 	app.route('/local-elections')
 		.get(localElections.list);
 
-    /*
-	app.route('/local-elections/:localElectionId')
-		.get(localElections.read)
-		.put(users.requiresLogin, localElections.hasAuthorization, localElections.update)
-		.delete(users.requiresLogin, localElections.hasAuthorization, localElections.delete);
-	*/
+    app.route('/local-elections/:localElectionId')
+        .get(localElections.read)
+        .put(localElections.update);
 
 	// Finish by binding the Local election middleware
-	app.param('localElectionId', localElections.localElectionByID);
+	app.param('localElectionId', localElections.localElectionById);
 };

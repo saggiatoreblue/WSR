@@ -1,67 +1,31 @@
 'use strict';
 
 // Local elections controller
-angular.module('local-elections').controller('LocalElectionsController', ['$scope', '$stateParams', '$location', 'Authentication', 'LocalElections',
-	function($scope, $stateParams, $location, Authentication, LocalElections) {
+angular.module('local-elections').controller('LocalElectionsController', ['$scope', '$stateParams', '$location', 'Authentication', 'LocalElections', 'Elections',
+	function($scope, $stateParams, $location, Authentication, LocalElections, Elections) {
 		$scope.authentication = Authentication;
-		$scope.electionData = false;
-		$scope.localElections = [];
 
         // Find a list of Local elections
         $scope.find = function() {
-           LocalElections.query().$promise.then(function(data){
-                if(data.length > 0) {
-                    $scope.electionData = true;
-                    data.forEach(function(item){
-                        if(item.office) {
-                            $scope.localElections.push(item);
-                        }
+            $scope.localElections = LocalElections.resource.query();
+        };
+
+        $scope.voteFor = function(el, can, event) {
+            LocalElections.resource.get({localElectionId: el._id},function(localElection){
+                if(localElection.candidates) {
+                    localElection.candidates.forEach(function(candidate){
+                        candidate.isSelected = (can._id === candidate._id && can.isSelected !== true);
+                    });
+                    localElection.$update(function(localElection) {
+                          //create new Election based on local Election data
+                          //if we have already generated an election for this local Election, update election instead
+                    }, function(errorResponse) {
+                        $scope.error = errorResponse.data.message;
                     });
                 }
-                else {
-                    $scope.electionData = false;
-                }
-
-            }, function(){
-                $scope.electionData = false;
             });
 
         };
 
-		/* Remove existing Local election
-		$scope.remove = function(localElection) {
-			if ( localElection ) { 
-				localElection.$remove();
-
-				for (var i in $scope.localElections) {
-					if ($scope.localElections [i] === localElection) {
-						$scope.localElections.splice(i, 1);
-					}
-				}
-			} else {
-				$scope.localElection.$remove(function() {
-					$location.path('local-elections');
-				});
-			}
-		};
-        */
-		/* Update existing Local election
-		$scope.update = function() {
-			var localElection = $scope.localElection;
-
-			localElection.$update(function() {
-				$location.path('local-elections/' + localElection._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};*/
-
-		/* Find existing Local election
-		$scope.findOne = function() {
-			$scope.localElection = LocalElections.get({ 
-				localElectionId: $stateParams.localElectionId
-			});
-		};
-		*/
 	}
 ]);

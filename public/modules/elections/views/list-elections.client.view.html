@@ -1,0 +1,18 @@
+<section class="content my-elections" data-ng-controller="ElectionsController" data-ng-init="find()">
+    <h4 class="text-muted">My Elections</h4>
+
+    <ul class="list-group my-elections--list">
+        <li data-ng-repeat="election in elections" data-ng-href="#!/elections/{{election._id}}" class="list-group-item my-elections--item">
+			<span class="my-elections--title">{{election.data[0].office}}</span>
+			<span class="my-elections--data">{{election.data[0].district}}</span>
+            <ul class="list-group candidate-list">
+                <li data-ng-repeat="candidate in election.candidates | filter : { isSelected : 'true' }" class="list-group-item candidate-list--item">
+                    <span class="candidate-list--data"></span><strong>You selected: </strong>{{candidate.name}}</span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div class="alert alert-warning text-center" data-ng-hide="!elections.$resolved || elections.length">
+    	No Elections yet, why don't you <a href="/#!/elections/create">create one</a>?
+    </div>
+</section>

@@ -1,0 +1,36 @@
+@import '../../../lib/bootstrap/less/bootstrap';
+@import '../../core/css/globals';
+@import '../../core/css/variables';
+@import '../../core/css/bootswatch';
+.my-elections {}
+	.my-elections--list {}
+		.my-elections--item {}
+			.my-elections--data {
+				display: block;
+				font-style: italic;
+			}
+			.my-elections--title {
+				font-weight: bold;
+				font-size: 18px;
+				margin-bottom: 5px;
+				display: block;
+			}
+
+
+.candidate-list {
+	.rem(margin-top, 20);
+	margin-bottom: 0!important;
+}
+	.candidate-list--item {
+		.candidate-list & {
+		  .rem(margin-bottom, 5);
+		  &:last-child {
+			margin-bottom: 0;
+		  }
+		  background-color: #efefef;
+		  color: black;
+		  strong {
+		  	font-weight: 600;
+		  }
+		}
+	}

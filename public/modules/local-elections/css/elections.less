@@ -1,5 +1,7 @@
+@import '../../../lib/bootstrap/less/bootstrap';
 @import '../../core/css/globals';
-
+@import '../../core/css/variables';
+@import '../../core/css/bootswatch';
 
 .accordion-toggle {
   display: block;
@@ -25,6 +27,7 @@
   .rem(font-size, 22);
   .rem(margin, 0, 0, 5, 0);
   text-transform: uppercase;
+  display: block;
 }
 .election--district {
   .rem(font-size, 18);
@@ -51,7 +54,9 @@
 	width: 100%;
 	text-align: right;
 	display: block;
-	.rem(padding-right, 20);
+	.rem(padding-right, 30);
+	.rem(margin-bottom, 5);
+	.rem(font-size, 16);
 }
 .candidate--data {
   font-weight: normal;
@@ -68,4 +73,20 @@
   top: 50%;
   .rem(margin-top, -15);
   position: absolute;
+  text-align: center;
+  .rem(padding-top, 7);
+
+  &.active {
+	.glyphicon;
+	.glyphicon-ok;
+	position: absolute;
+	top: 50%;
+	.rem(font-size, 14);
+	color: darkgreen;
+
+  }
+}
+
+.alert-danger {
+	display: none;
 }

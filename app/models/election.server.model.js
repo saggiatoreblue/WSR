@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
  * Local election Schema
  */
 
-var LocalElectionCandidates = new Schema({
+var ElectionCandidates = new Schema({
     name: {
         type: String,
         default: '',
@@ -40,7 +40,7 @@ var LocalElectionCandidates = new Schema({
     }
 
 });
-var LocalElectionData = new Schema({
+var ElectionData = new Schema({
 
     type: {
         type: String,
@@ -65,31 +65,27 @@ var LocalElectionData = new Schema({
 
 });
 
-var LocalElectionSchema = new Schema({
-    hasBeenVoted : {
-        type: Boolean,
-        default: 'false'
-    },
+var ElectionSchema = new Schema({
     state : {
         type: String,
         default: '',
         trim: true
     },
-    data : [LocalElectionData],
-    candidates: [LocalElectionCandidates],
+    data : [ElectionData],
+    candidates: [ElectionCandidates],
     user: {
         type: Schema.ObjectId,
         ref: 'User'
     },
-    hash: {
-        type: String,
-        default: ''
-    },
     created: {
         type: Date,
         default: Date.now
+    },
+    hash: {
+        type: String,
+        default: ''
     }
-
 });
 
-mongoose.model('LocalElection', LocalElectionSchema);
+
+mongoose.model('Election', ElectionSchema);

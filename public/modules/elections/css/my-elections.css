@@ -7155,104 +7155,30 @@ a.list-group-item-danger.active:focus {
 .popover {
   color: #2c3e50;
 }
-.accordion-toggle {
+.my-elections--data {
   display: block;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
-.accordion-toggle:hover {
-  text-decoration: none;
-}
-.election {
-  position: relative;
-}
-.election .glyphicon {
-  right: 10px;
-  right: 0.625rem;
-  top: 30px;
-  top: 1.875rem;
-  position: absolute;
-}
-.election--office {
-  font-size: 22px;
-  font-size: 1.375rem;
-  margin: 0px 0px 5px 0px;
-  margin: 0rem 0rem 0.3125rem 0rem;
-  text-transform: uppercase;
-  display: block;
-}
-.election--district {
-  font-size: 18px;
-  font-size: 1.125rem;
   font-style: italic;
+}
+.my-elections--title {
   font-weight: bold;
-}
-.election--data {
-  font-weight: normal;
-}
-.election--data a:not([href]) {
-  color: black;
-}
-.election--data a:not([href]):hover {
-  text-decoration: none;
-}
-.candidate--detail {
+  font-size: 18px;
+  margin-bottom: 5px;
   display: block;
-  font-weight: bold;
 }
-.vote-label {
-  width: 100%;
-  text-align: right;
-  display: block;
-  padding-right: 30px;
-  padding-right: 1.875rem;
+.candidate-list {
+  margin-top: 20px;
+  margin-top: 1.25rem;
+  margin-bottom: 0!important;
+}
+.candidate-list .candidate-list--item {
   margin-bottom: 5px;
   margin-bottom: 0.3125rem;
-  font-size: 16px;
-  font-size: 1rem;
+  background-color: #efefef;
+  color: black;
 }
-.candidate--data {
-  font-weight: normal;
+.candidate-list .candidate-list--item:last-child {
+  margin-bottom: 0;
 }
-.candidate--select {
-  display: block;
-  width: 30px;
-  width: 1.875rem;
-  height: 30px;
-  height: 1.875rem;
-  border: 1px solid #ddd;
-  background: white;
-  cursor: pointer;
-  right: 30px;
-  right: 1.875rem;
-  top: 50%;
-  margin-top: -15px;
-  margin-top: -0.9375rem;
-  position: absolute;
-  text-align: center;
-  padding-top: 7px;
-  padding-top: 0.4375rem;
-}
-.candidate--select.active {
-  position: relative;
-  top: 1px;
-  display: inline-block;
-  font-family: 'Glyphicons Halflings';
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  position: absolute;
-  top: 50%;
-  font-size: 14px;
-  font-size: 0.875rem;
-  color: darkgreen;
-}
-.candidate--select.active:before {
-  content: "\e013";
-}
-.alert-danger {
-  display: none;
+.candidate-list .candidate-list--item strong {
+  font-weight: 600;
 }

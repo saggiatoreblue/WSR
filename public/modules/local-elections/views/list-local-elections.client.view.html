@@ -1,24 +1,22 @@
 <div class="content" data-ng-controller="LocalElectionsController" data-ng-init="find()" >
     <h4 class="text-muted">Local Elections</h4>
-    <accordion data-ng-if="electionData">
+    <accordion data-ng-if="localElections.length">
         <accordion-group data-ng-repeat="localElection in localElections" is-open="status.open" class="election">
             <accordion-heading>
-                <h2 class="election--office">{{localElection.office}}</h2>
+                <h2 class="election--office">{{localElection.data[0].office}}</h2>
                 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                <span class="election--district">District: <span class="election--data">{{localElection.district}}</span></span>
+                <span class="election--district">District: <span class="election--data">{{localElection.data[0].district}}</span></span>
             </accordion-heading>
 
             <ul class="list-group election--list__candidates">
                 <span class="vote-label">Vote</span>
-            <li ng-repeat="candidate in localElection.candidates | unique: 'name'" class="list-group-item candidate">
-
-                    <span class="candidate--select"></span>
-
-                <span class="candidate--detail candidate--name candidate--detail__name">Name: <span class="candidate--data"><a target="_blank" data-ng-href="{{candidate.candidateUrl}}">{{candidate.name}}</a></span></span>
-                <span class="candidate--detail candidate--detail__party">Party: <span class="candidate--data">{{candidate.party}}</span></span>
-            </li>
+                <li ng-repeat="candidate in localElection.candidates | unique: 'name' " class="list-group-item candidate">
+                    <span ng-class="{active: candidate.isSelected}" data-ng-model="candidate.isSelected"  class="candidate--select checkbox" ng-click="voteFor(localElection, candidate,  $event)"></span>
+                    <span class="candidate--detail candidate--name candidate--detail__name">Name: <span class="candidate--data"><a target="_blank" data-ng-href="{{candidate.candidateUrl}}">{{candidate.name}}</a></span></span>
+                    <span class="candidate--detail candidate--detail__party">Party: <span class="candidate--data">{{candidate.party}}</span></span>
+                </li>
             </ul>
         </accordion-group>
     </accordion>
-    <div class="alert alert-danger" role="alert" ng-if="!electionData">No election data could be found. Please update your address in your <a ui-sref="profile">user profile<i class="glyphicon glyphicon-chevron-right"></i></a> </div>
+    <div class="alert alert-danger" role="alert" ng-if="!localElections.length">No election data could be found. Please update your address in your <a ui-sref="profile">user profile<i class="glyphicon glyphicon-chevron-right"></i></a> </div>
 </div>
