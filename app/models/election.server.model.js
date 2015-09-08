@@ -83,7 +83,8 @@ var ElectionSchema = new Schema({
     },
     hash: {
         type: String,
-        default: ''
+        default: '',
+        unique: true
     }
 });
 

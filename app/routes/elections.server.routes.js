@@ -14,6 +14,9 @@ module.exports = function(app) {
 		.put(users.requiresLogin, elections.hasAuthorization, elections.update)
 		.delete(users.requiresLogin, elections.hasAuthorization, elections.delete);
 
+
+
+
 	// Finish by binding the Election middleware
 	app.param('electionId', elections.electionByID);
 };

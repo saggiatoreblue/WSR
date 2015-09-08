@@ -13,6 +13,22 @@
                     </ul>
                 </div>
             </div>
+            <div data-ng-show="authentication.user" class="panel panel-default panel__my-elections" ng-controller="ElectionsController" data-ng-init="find()">
+                    <div class="panel-body panel-body__my-elections">
+                        <h4 class="text-muted">My Elections</h4>
+                        <ul class="list-group my-elections--list">
+                            <li data-ng-repeat="election in elections" data-ng-href="#!/elections/{{election._id}}" class="list-group-item my-elections--item">
+                                <span class="my-elections--title">{{election.data[0].office}}</span>
+                                <ul class="list-group candidate-list">
+                                    <li data-ng-repeat="candidate in election.candidates | filter : { isSelected : 'true' }" class="list-group-item candidate-list--item">
+                                        <span class="candidate-list--data"></span><strong>You selected: </strong>{{candidate.name}}</span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+            </div>
         </div>
 
     </div>

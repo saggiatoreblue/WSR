@@ -31,6 +31,7 @@ exports.create = function(req, res) {
  */
 exports.read = function(req, res) {
 	res.jsonp(req.election);
+
 };
 
 /**
@@ -72,8 +73,8 @@ exports.delete = function(req, res) {
 /**
  * List of Elections
  */
-exports.list = function(req, res) { 
-	Election.find().sort('-created').populate('user', 'displayName').exec(function(err, elections) {
+exports.list = function(req, res) {
+	Election.find(req.query).sort('-created').populate('user', 'displayName').exec(function(err, elections) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

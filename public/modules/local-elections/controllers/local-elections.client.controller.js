@@ -15,10 +15,24 @@ angular.module('local-elections').controller('LocalElectionsController', ['$scop
                 if(localElection.candidates) {
                     localElection.candidates.forEach(function(candidate){
                         candidate.isSelected = (can._id === candidate._id && can.isSelected !== true);
+                        localElection.hasBeenVoted = true;
                     });
                     localElection.$update(function(localElection) {
-                          //create new Election based on local Election data
-                          //if we have already generated an election for this local Election, update election instead
+                            var existingElection = Elections.resource.query({hash: el.hash}, function(response){
+                                if(response.length > 0) {
+                                    existingElection[0].candidates = localElection.candidates;
+                                    existingElection[0].$update();
+                                }
+                                else {
+                                    var newElection = new Elections.resource({
+                                        state: localElection.state,
+                                        data: localElection.data,
+                                        candidates: localElection.candidates,
+                                        hash: localElection.hash
+                                    });
+                                    newElection.$save();
+                                }
+                            });
                     }, function(errorResponse) {
                         $scope.error = errorResponse.data.message;
                     });

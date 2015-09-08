@@ -25,10 +25,10 @@ exports.getElectionData = function(user) {
                     errorHandler.getErrorMessage(err);
                 }
                 else {
-                    var current_date = (new Date()).valueOf().toString();
-                    var random = Math.random().toString();
-                    var hash = crypto.createHash('sha1').update(current_date + random).digest('hex');
                     results.forEach(function(result){
+                        var current_date = (new Date()).valueOf().toString();
+                        var random = Math.random().toString();
+                        var hash = crypto.createHash('sha1').update(current_date + random).digest('hex');
                         var localElection = new LocalElection({
                             state: state,
                             user: user,
